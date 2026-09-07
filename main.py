@@ -1,15 +1,26 @@
-﻿from auto import Auto
-from moto import Moto
-from camion import Camion
+from vehiculo import Vehiculo # Importa la clase base Vehiculo desde vehiculo.py
+from auto import Auto # Importa la clase Auto desde auto.py
+from moto import Moto # Importa la clase Moto desde moto.py
+from camion import Camion # Importa la clase Camion desde camion.py
 
-vehiculo1 = Auto("AB1234", 2018, 100) # Instancia el primer objeto Auto pasándole su patente y año
-vehiculo2 = Moto("CD5678", 2020) # Instancia el segundo objeto Moto pasándole su patente y año
-vehiculo3 = Camion("EF9012", 2023, 5000) # Instancia el tercer objeto Camion pasándole su patente y año
+# Instanciación del vehículo base y objetos de las subclases
+vehiculo_base = Vehiculo("GH3456", 2015) # Instancia un objeto base Vehiculo con patente y año
+vehiculo1 = Auto("AB1234", 2018, 100) # Instancia un objeto Auto con patente, año y capacidad de maletero
+vehiculo2 = Moto("CD5678", 2020) # Instancia un objeto Moto con patente y año
+vehiculo3 = Camion("EF9012", 2023, 5000) # Instancia un objeto Camion con patente, año y capacidad de carga
 
-print(vehiculo1.ingresar()) # Ejecuta ingresar() del primer vehículo y muestra el texto retornado en consola
-print(vehiculo2.ingresar()) # Ejecuta ingresar() del segundo vehículo y muestra el texto retornado en consola
-print(vehiculo3.ingresar()) # Ejecuta ingresar() del tercer vehículo y muestra el texto retornado en consola
+# Registro de ingreso al taller para cada vehículo
+print(vehiculo_base.ingresar()) # Ejecuta ingresar() del vehículo base y muestra el mensaje en consola
+print(vehiculo1.ingresar()) # Ejecuta ingresar() del primer vehículo y muestra el mensaje en consola
+print(vehiculo2.ingresar()) # Ejecuta ingresar() del segundo vehículo y muestra el mensaje en consola
+print(vehiculo3.ingresar()) # Ejecuta ingresar() del tercer vehículo y muestra el mensaje en consola
 
-print(f"Tarifa por hora del primer vehículo: ") # Concatena e imprime la tarifa retornada por el primer vehículo
-print(f"Tarifa por hora del segundo vehículo: ") # Concatena e imprime la tarifa retornada por el segundo vehículo
-print(f"Tarifa por hora del tercer vehículo: ") # Concatena e imprime la tarifa retornada por el tercer vehículo
+# Demostración de encapsulamiento con la propiedad patente
+pruebaEnc = vehiculo3.patente # Obtiene la patente a través del getter de la propiedad
+print(f"Patente obtenida de vehiculo3: {pruebaEnc}") # Muestra la patente en consola
+
+# Invocación y visualización de la tarifa por hora de cada vehículo
+print(f"Tarifa por hora del vehículo base: {vehiculo_base.tarifa_hora()}") # Muestra la tarifa base de Vehiculo (5000)
+print(f"Tarifa por hora del primer vehículo (Auto): {vehiculo1.tarifa_hora()}") # Muestra la tarifa específica de Auto (25000)
+print(f"Tarifa por hora del segundo vehículo (Moto): {vehiculo2.tarifa_hora()}") # Muestra la tarifa específica de Moto (15000)
+print(f"Tarifa por hora del tercer vehículo (Camión): {vehiculo3.tarifa_hora()}") # Muestra la tarifa específica de Camion (40000)
