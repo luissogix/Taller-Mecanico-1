@@ -1,4 +1,4 @@
-﻿# Taller Mecánico
+# Taller Mecánico
 
 Repositorio para la asignatura de Programación Orientada a Objetos Seguro.
 
@@ -8,6 +8,18 @@ Repositorio para la asignatura de Programación Orientada a Objetos Seguro.
 ---
 
 ## Bitácora de Avances
+
+### 7 de Septiembre de 2026
+- **Encapsulamiento y Validación con Properties y Getters/Setters:**
+  - Se implementaron decoradores `@property` y `@patente.setter` en `Vehiculo` con validación para que la patente tenga al menos 6 caracteres y no contenga espacios.
+  - Se agregaron métodos tradicionales `get_patente()` y `set_patente()` en `Vehiculo`.
+  - Se implementó encapsulamiento y validación para `capacidad_maletero` en `Auto` y `capacidad_carga` en `Camion` (validando que sean enteros positivos mayores a 0).
+- **Control de Estado sin Condicionales `if`:**
+  - Se refactorizaron los métodos `ingresar()` y `entregar()` en `Vehiculo` usando mapeos por diccionario para evitar condicionales `if`.
+- **Cálculo Polimórfico de Tarifas:**
+  - Se implementó `tarifa_hora()` en `Vehiculo` ($5.000), `Auto` ($25.000), `Moto` ($15.000) y `Camion` ($40.000).
+- **Actualización y Pruebas en `main.py`:**
+  - Se demostró el ingreso de todos los vehículos, el acceso por propiedad a la patente (`pruebaEnc`), y la consulta de tarifas por hora.
 
 ### 31 de Agosto de 2026
 - **Creación de Subclases:**
