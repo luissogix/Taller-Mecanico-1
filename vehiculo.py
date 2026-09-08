@@ -1,4 +1,7 @@
-class Vehiculo: # Define la clase Vehiculo
+from abc import ABC, abstractmethod
+
+
+class Vehiculo(ABC): # Define la clase Vehiculo como una clase abstracta
     def __init__(self, patente: str, anio: int): # Constructor que recibe patente y año al crear el objeto
         self.patente: str = patente # Asigna mediante el setter de la propiedad para ejecutar la validación
         self.__anio: int = anio # Asigna el año recibido a un atributo privado
@@ -10,7 +13,7 @@ class Vehiculo: # Define la clase Vehiculo
 
     @patente.setter
     def patente(self, valor: str) -> None: # Setter para validar y asignar la patente
-        if not isinstance(valor, str) or len(valor) < 6 or " " in valor: # Valida que sea texto, tenga al menos 6 caracteres y sin espacios
+        if not isinstance(valor, str) or len(valor) < 6 or " " in valor: # Valida que tenga al menos 6 caracteres y sin espacios
             raise ValueError("La patente debe tener al menos 6 caracteres y no contener espacios.") # Lanza error si no cumple
         self.__patente: str = valor # Asigna el valor validado al atributo privado __patente
 
@@ -38,5 +41,6 @@ class Vehiculo: # Define la clase Vehiculo
         self.__en_taller = False # Actualiza el estado a False (fuera del taller)
         return mensaje # Retorna el mensaje correspondiente
 
-    def tarifa_hora(self) -> int: # Método que retorna el costo de la tarifa por hora
-        return 5000 # Retorna un valor fijo de 5000
+    @abstractmethod
+    def tarifa_hora(self) -> int: # Método abstracto para que cada subclase defina su tarifa por hora
+        pass
