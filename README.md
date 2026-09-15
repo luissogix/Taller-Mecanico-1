@@ -2,8 +2,8 @@
 
 Repositorio para la asignatura de Programación Orientada a Objetos Seguro.
 
-**Profesor:** Michael Arjel
-**Institución:** Inacap
+**Profesor:** Michael Arjel  
+**Institución:** Inacap  
 
 ---
 
@@ -33,3 +33,17 @@ Repositorio para la asignatura de Programación Orientada a Objetos Seguro.
   - Se importaron las subclases `Auto`, `Moto` y `Camion`.
   - Se instanciaron objetos de cada una de las clases hijas y se verificó la invocación de métodos heredados (`ingresar()` y `tarifa_hora()`).
 - **Documentación:** Código comentado línea por línea con fines pedagógicos.
+
+### 15 de Septiembre de 2026
+- **Reestructuración en Capas (Paquetes `model` y `dao`):**
+  - Creación del paquete `model/` con `__init__.py` para albergar las clases de dominio y negocio: `Vehiculo`, `Auto`, `Moto`, `Camion`, `Marca`, `Modelo`, `Persona`, `Cliente`, `Rol`, `Usuario`, `Repuesto`, `OrdenTrabajo` y `LineaDetalle`.
+  - Creación del paquete `dao/` con `__init__.py` para la capa de acceso a datos (persistencia).
+  - Actualización de todos los `imports` relativos y absolutos en los módulos del proyecto.
+- **Conexión a Base de Datos (`conectar.py`):**
+  - Creación de la función `crear_conexion()` que retorna una conexión activa a SQLite (`taller.db`).
+  - Habilitación de claves foráneas mediante `PRAGMA foreign_keys = ON;` para asegurar integridad referencial.
+- **Implementación del Patrón DAO:**
+  - **Clase Base `Dao` (`dao/dao.py`):** Recibe la conexión en su constructor y genera el cursor correspondiente.
+  - **Clase `MarcaDao` (`dao/marca_dao.py`):** Implementa el método `crear_tabla()` para la tabla `marcas` (`id INTEGER PRIMARY KEY AUTOINCREMENT`, `nombre TEXT NOT NULL`).
+  - **Clase `ModeloDao` (`dao/modelo_dao.py`):** Implementa el método `crear_tabla()` para la tabla `modelos` (`id`, `nombre`, `marca_id` como FK a `marcas.id`).
+  - **Clase `VehiculoDao` (`dao/vehiculo_dao.py`):** Implementa el método `crear_tabla()` para la tabla `vehiculos` (`patente TEXT PRIMARY KEY`, `anio INTEGER NOT NULL`, `en_taller INTEGER NOT NULL`, `modelo_id INTEGER NOT NULL` como FK a `modelos.id`).
