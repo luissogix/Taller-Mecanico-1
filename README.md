@@ -42,8 +42,13 @@ Repositorio para la asignatura de Programación Orientada a Objetos Seguro.
 - **Conexión a Base de Datos (`conectar.py`):**
   - Creación de la función `crear_conexion()` que retorna una conexión activa a SQLite (`taller.db`).
   - Habilitación de claves foráneas mediante `PRAGMA foreign_keys = ON;` para asegurar integridad referencial.
-- **Implementación del Patrón DAO:**
+- **Implementación del Patrón DAO y Herencia de Tablas:**
   - **Clase Base `Dao` (`dao/dao.py`):** Recibe la conexión en su constructor y genera el cursor correspondiente.
   - **Clase `MarcaDao` (`dao/marca_dao.py`):** Implementa el método `crear_tabla()` para la tabla `marcas` (`id INTEGER PRIMARY KEY AUTOINCREMENT`, `nombre TEXT NOT NULL`).
   - **Clase `ModeloDao` (`dao/modelo_dao.py`):** Implementa el método `crear_tabla()` para la tabla `modelos` (`id`, `nombre`, `marca_id` como FK a `marcas.id`).
   - **Clase `VehiculoDao` (`dao/vehiculo_dao.py`):** Implementa el método `crear_tabla()` para la tabla `vehiculos` (`patente TEXT PRIMARY KEY`, `anio INTEGER NOT NULL`, `en_taller INTEGER NOT NULL`, `modelo_id INTEGER NOT NULL` como FK a `modelos.id`).
+  - **Clase `AutoDao` (`dao/auto_dao.py`):** Hereda de `VehiculoDao`, invoca `super().crear_tabla()` y crea la tabla `autos` (`patente TEXT PRIMARY KEY` y FK a `vehiculos.patente`).
+  - **Clase `MotoDao` (`dao/moto_dao.py`):** Hereda de `VehiculoDao`, invoca `super().crear_tabla()` y crea la tabla `motos` (`patente TEXT PRIMARY KEY` y FK a `vehiculos.patente`).
+  - **Clase `CamionDao` (`dao/camion_dao.py`):** Hereda de `VehiculoDao`, invoca `super().crear_tabla()` y crea la tabla `camiones` (`patente TEXT PRIMARY KEY`, `capacidad_carga INTEGER NOT NULL` y FK a `vehiculos.patente`).
+- **Actualización de Script Principal (`main.py`):**
+  - Integración de los DAOs para inicialización secuencial y validación de creación de todas las tablas en `taller.db` respetando el orden de dependencias e integridad referencial.
