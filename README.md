@@ -46,3 +46,9 @@ Repositorio para la asignatura de Programación Orientada a Objetos Seguro.
   - **`vehiculo_dao.py` y `auto_dao.py`:** Implementación de herencia relacional (Table-per-type). `AutoDao` hereda de `VehiculoDao` e invoca `super().crear_tabla()`. La tabla `autos` usa su llave primaria también como llave foránea hacia `vehiculos`.
 - **Actualización de Script Principal (`main.py`):**
   - El código de prueba fue refactorizado y limpiado para enfocarse únicamente en inicializar los DAOs y crear (o validar la existencia de) las tablas correspondientes (`marcas`, `modelos`, `vehiculos`, `autos`).
+
+### 28 de Septiembre de 2026
+- **Gestión de Dependencias:**
+  - Creación del archivo `requirements.txt` en la raíz del proyecto.
+  - Inclusión e instalación de la librería `requests` para el consumo de servicios web y APIs externas.
+
